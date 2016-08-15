@@ -1,0 +1,53 @@
+- content_for :title do
+  = @term.name
+
+%div.show_a_term
+  %p
+    %strong= "#{@term.name}:"
+    = @term.definition
+  - @term.categories.each do |category|
+    %p= category.name
+
+  %p
+    = "Author: #{@term.author}"
+  %div.web_links_show
+    %p
+      External Resources:
+    %ul
+      - @term.web_links.each do |link|
+        %li
+          %a{ href: "#{link.url}"}
+            = link.description
+
+
+%form.web_link_create{ name: "web_link_create", action: "/web_links", method: "post" }
+  %input{type: "hidden", name: "web_link[term_id]", value: "#{@term.id}" }
+  %label
+    Add an external link:
+    %input{ type: "text", name: "web_link[url]" }
+  %label
+    Description:
+    %input{ type: "text", name: "web_link[description]" }
+  %div.create_save
+    %input{type: "submit", value: "Save"}
+
+%form.comment_create{ name: "comment_create", action: "/comments", method: "post" }
+  %input{type: "hidden", name: "comment[term_id]", value: "#{@term.id}" }
+  %label
+    Leave a comment:
+    %textarea{ rows: "5", name: "comment[body]" }
+  %label
+    Your Name:
+    %input{ type: "text", name: "comment[author]" }
+  %div.create_save
+    %input{type: "submit", value: "Save"}
+
+- @comments.each do |comment|
+  %div.comment_show
+    %p.comment_body
+      = comment.body
+    %div.comment_timestamp_author
+      %p
+        = comment.created_at
+      %p
+        = "-#{comment.author}"
