@@ -209,6 +209,7 @@ h3 {
 /*--------------------------TERM CREATE------------------*/
 .term_create {
   width: 80%;
+  max-width: 400px;
   display: flex;
   flex-wrap: wrap;
 }
@@ -315,10 +316,14 @@ p.comment_body {
 
 .web_links_show,
 .term_cats_show{
-  margin-top: 0;
+  margin: 0;
   display: flex;
   justify-content: space-between;
   align-items: baseline;
+}
+
+.term_cats_show ul {
+  margin: 0;
 }
 
 .web_links_show p,
