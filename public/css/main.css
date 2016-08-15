@@ -313,7 +313,8 @@ p.comment_body {
   border-bottom: 1px solid #fba43e;
 }
 
-.web_links_show {
+.web_links_show,
+.term_cats_show{
   margin-top: 0;
   display: flex;
   justify-content: space-between;
@@ -321,6 +322,7 @@ p.comment_body {
 }
 
 .web_links_show p,
-.web_links_show a{
+.web_links_show a,
+.term_cats_show p{
   font-size: 0.7em;
 }

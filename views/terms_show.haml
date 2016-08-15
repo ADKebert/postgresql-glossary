@@ -5,11 +5,17 @@
   %p
     %strong= "#{@term.name}:"
     = @term.definition
-  - @term.categories.each do |category|
-    %p= category.name
-
   %p
     = "Author: #{@term.author}"
+
+  %div.term_cats_show
+    %p
+      Categories:
+    %ul
+      - @term.categories.each do |category|
+        %li
+          %p= category.name
+
   %div.web_links_show
     %p
       External Resources:
