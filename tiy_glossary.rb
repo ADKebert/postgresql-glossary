@@ -79,6 +79,8 @@ put '/terms/:id' do
   # update one term
   term = Term.find(params[:id])
   term.update_attributes(params["term"])
+  categories = params["category"].map { |name, id| Category.find(id) }
+  term.categories = categories
 
   redirect "/terms/#{params[:id]}"
 end

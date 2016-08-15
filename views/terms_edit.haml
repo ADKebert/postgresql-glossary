@@ -20,8 +20,8 @@
       %div.cat_with_box
         =category.name
         - if @term.categories.include? category
-          %input{type: "checkbox", value: "#{category.id}", name: "term[category_id]", checked: "true"}
+          %input{type: "checkbox", value: "#{category.id}", name: "category[#{category.name}]", checked: "true"}
         - else
-          %input{type: "checkbox", value: "#{category.id}", name: "term[category_id]"}
+          %input{type: "checkbox", value: "#{category.id}", name: "category[#{category.name}]"}
   %div.create_save
     %input{type: "submit", value: "Save"}

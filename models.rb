@@ -9,6 +9,7 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 class Term < ActiveRecord::Base
+  has_many :category_term_relations
   has_many :categories, through: :category_term_relations
   has_many :comments
   has_many :web_links
@@ -23,6 +24,7 @@ class Comment < ActiveRecord::Base
 end
 
 class Category < ActiveRecord::Base
+  has_many :category_term_relations
   has_many :terms, through: :category_term_relations
 end
 
