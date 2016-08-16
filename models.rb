@@ -9,6 +9,7 @@ ActiveRecord::Base.establish_connection(
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
 class Term < ActiveRecord::Base
+  validates :name, presence: true, uniqueness: true
   has_many :category_term_relations
   has_many :categories, through: :category_term_relations
   has_many :comments
@@ -24,6 +25,8 @@ class Comment < ActiveRecord::Base
 end
 
 class Category < ActiveRecord::Base
+  validates :name, :subject_area , presence: true
+  validates :name, uniqueness: true
   has_many :category_term_relations
   has_many :terms, through: :category_term_relations
 end

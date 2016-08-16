@@ -49,10 +49,17 @@ end
 post '/terms' do
   # add a new term to the database
   term = Term.create params["term"]
-  categories = params["category"].map { |name, id| Category.find(id) }
-  term.categories = categories
+  if params["category"]
+    categories = params["category"].map { |name, id| Category.find(id) }
+    term.categories = categories
+  end
 
-  redirect '/terms'
+  if term.valid?
+    redirect '/terms'
+  else
+    @categories = Category.all
+    haml :terms_new
+  end
 end
 
 get '/terms/new' do
