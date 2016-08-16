@@ -1,10 +1,15 @@
 require 'active_record'
 require 'pg'
 
-ActiveRecord::Base.establish_connection(
-  adapter: 'postgresql',
-  database: 'tiyglossary_development'
-)
+if ENV["DATABASE_URL"]
+  # Production
+  ActiveRecord::Base.establish_connection(ENV["DATABASE_URL"])
+else
+  # Development
+  ActiveRecord::Base.establish_connection(
+    adapter: 'postgresql',
+    database: 'tiyglossary_development'
+  )
 
 ActiveRecord::Base.logger = Logger.new(STDOUT)
 
